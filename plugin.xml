@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin
+    xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-ble-manager"
+    version="1.1.1">
+
+    <name>BLE</name>
+    <description>Bluetooth Low Energy (BLE) Manager</description>
+    <license>Apache 2.0</license>
+    <keywords>bluetooth, BLE, bluetooth low energy, bluetooth smart</keywords>
+
+    <repo>https://github.com/vinitscordova/cordova-plugin-ble-manager.git</repo>
+    <issue>https://github.com/vinitscordova/cordova-plugin-ble-manager/issues</issue>
+
+    <js-module src="www/ble_manager.js" name="blemgr">
+        <clobbers target="blemgr" />
+    </js-module>
+
+    <platform name="ios">
+
+        <config-file target="config.xml" parent="/widget">
+            <feature name="BLEMGR">
+                <param name="ios-package" value="BLEManagerPlugin" onload="true"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/BLEManager.h" target-dir="BLEManagerPlugin" />
+        <source-file src="src/ios/BLEManager.m" target-dir="BLEManagerPlugin" />
+
+        
+        <!-- iOS SPermissions -->
+        <preference name="BLUETOOTH_USAGE_DESCRIPTION" default=" " />
+        <config-file target="*-Info.plist" parent="NSBluetoothPeripheralUsageDescription">
+            <string>$BLUETOOTH_USAGE_DESCRIPTION</string>
+        </config-file>
+        <config-file target="*-Info.plist" parent="NSBluetoothAlwaysUsageDescription">
+            <string>$BLUETOOTH_USAGE_DESCRIPTION</string>
+        </config-file>
+    </platform>
+
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/widget">
+            <feature name="BLEMGR">
+                <param name="android-package" value="com.covidcontacttracing"/>
+            </feature>
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+            <uses-permission android:name="android.permission.BLUETOOTH"/>
+            <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+        </config-file>
+
+        <source-file src="src/android/BleCustomModule.java"
+            target-dir="src/com/covidcontacttracing"/>        
+
+    </platform>
+
+    
+</plugin>
