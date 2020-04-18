@@ -13,7 +13,7 @@
     <repo>https://github.com/vinitscordova/cordova-plugin-ble-manager.git</repo>
     <issue>https://github.com/vinitscordova/cordova-plugin-ble-manager/issues</issue>
 
-    <js-module src="www/ble_manager.js" name="blemgr">
+    <js-module src="www/blemgr.js" name="blemgr">
         <clobbers target="blemgr" />
     </js-module>
 
