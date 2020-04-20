@@ -1,3 +1,6 @@
+var exec = require('cordova/exec');
+var PLUGIN_NAME = 'BLEManager';
+
 module.exports = {
     
     // iOS only functions
